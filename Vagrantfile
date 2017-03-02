@@ -27,6 +27,7 @@ Vagrant.configure("2") do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.56.101"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -75,4 +76,11 @@ Vagrant.configure("2") do |config|
     host: 50022,
     id: "ssh",
     auto_correct: true
+
+  config.vm.provision :shell, :path => "./start_docker.sh"
+
+  # CentOS7 でホストオンリーアダプターが設定できない件(Vagrantのバグ？)の対応
+  # これを入れると、仮想マシン起動後のdocker buildで、yumからのネットワークアクセスに失敗する…
+  # 設定とか終わったら以下のコマンドを叩くしかないってこと？？
+  #config.vm.provision "shell", run: "always", inline: "systemctl restart network.service"
 end
