@@ -1,0 +1,17 @@
+version: '3'
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "node-test"
+#    depends_on:
+#      - db
+    ports:
+      - 127.0.0.1:23000:3000
+#      - 81:81
+#    volumes:
+#      - /var/www:/var/www
+#    links:
+#      - db:database
+    privileged: true

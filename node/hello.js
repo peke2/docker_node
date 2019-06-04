@@ -9,6 +9,8 @@ const server = http.createServer((req, res)=>{
 	res.end('ハローNode.js\n');
 });
 
-server.listen(port, hostname, ()=>{
+//	hostname の指定があると、対象のホスト以外からのアクセスを拒否する
+//server.listen(port, hostname, ()=>{
+server.listen(port, ()=>{
 	console.log(`Server running at http://${hostname}:${port}/`);
 });

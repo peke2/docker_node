@@ -5,18 +5,18 @@
 # https://docs.docker.com/engine/installation/linux/centos/
 
 # 古いバージョンのdockerを削除
-sudo yum -y remove docker docker-common container-selinux
+##sudo yum -y remove docker docker-common container-selinux
 # 最新のdocker-engineと衝突しないよう、これも削除
-sudo yum -y remove docker-selinux
+##sudo yum -y remove docker-selinux
 
 # インストール
-sudo yum install -y yum-utils
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 # 安定版リポジトリを登録
-sudo yum-config-manager --add-repo https://docs.docker.com/engine/installation/linux/repo_files/centos/docker.repo
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 # yumパッケージインデックスの更新
 sudo yum makecache fast
 # docker-engineをインストール
-sudo yum -y install docker-engine
+sudo yum -y install docker-ce docker-ce-cli containerd.io
 
 #プロダクションでは、インストールする時にバージョンを明示的に指定するべき
 #バージョンリストの確認とバージョンを指定したdocker-engineのインストール
